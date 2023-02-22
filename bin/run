@@ -1,0 +1,34 @@
+require_relative '../config/environment'
+
+def reload
+    load 'config/environment.rb'
+  end
+
+
+# create some authors
+author1 = Author.new("William Shakespeare")
+author2 = Author.new("Agatha Christie")
+author3 = Author.new("Leo Tosltoy")
+
+# create some magazines
+magazine1 = Magazine.new("Romance", "Tragedy")
+magazine2 = Magazine.new("Mystery", "Fictions")
+magazine3 = Magazine.new("Fiction", "War story")
+
+# add articles to authors and magazines
+author1.add_article(magazine1, "The Romeo and Juliet")
+author1.add_article(magazine1, "Hamlet")
+author2.add_article(magazine2, "Death on the Nile")
+author2.add_article(magazine2, "Halloween Party")
+author3.add_article(magazine3, "After the Ball")
+author3.add_article(magazine3, "War and the Peace")
+
+# retrieve information using instance and class methods
+puts "Author 1's name is #{author1.name}"
+puts "Magazine 2's category is #{magazine2.category}"
+puts "The first magazine with the name 'Time' is #{Magazine.find_by_name("Time").name}"
+puts "Author 1's contributing topic areas are #{author1.topic_areas}"
+puts "The titles of all articles for magazine 1 are: #{magazine1.article_titles}"
+puts "Authors who have written more than 2 articles for magazine 2 are: #{magazine2.contributing_authors.map(&:name)}"
+
+binding.pry
